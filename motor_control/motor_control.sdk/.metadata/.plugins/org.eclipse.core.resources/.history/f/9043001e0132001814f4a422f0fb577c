@@ -67,15 +67,14 @@ XGpio gpio1; // pmod motor
 
 void rotate_cw(){
 	print("Rotate cw\n\r");
-	// duty cycle of 50%
+	// step motor
 
-	for (int i = 0; i < 2 * SPEED; i++){
-		if (i % 2 == 0)
-			XGpio_DiscreteWrite(&gpio1, PMOD_MOTOR_CHANNEL, 2);
-		else
-			XGpio_DiscreteWrite(&gpio1, PMOD_MOTOR_CHANNEL, 0);
+	for (int i = 0; i < 100; i++){
+		XGpio_DiscreteWrite(&gpio1, PMOD_MOTOR_CHANNEL, 2);
+		for (int i = 0; i < SPEED / 4; i++);
+		XGpio_DiscreteWrite(&gpio1, PMOD_MOTOR_CHANNEL, 0);
+		for (int i = 0; i < 2 * SPEED; i++);
 	}
-	XGpio_DiscreteWrite(&gpio1, PMOD_MOTOR_CHANNEL, 0);
 
 	/*
 	for (int i = 0; i < 10000; i++){
@@ -89,14 +88,13 @@ void rotate_cw(){
 
 void rotate_ccw(){
 	print("Rotate ccw\n\r");
-	// duty cycle of 25%
-	for (int i = 0; i < 2 * SPEED; i++){
-		if (i % 4 == 0)
-			XGpio_DiscreteWrite(&gpio1, PMOD_MOTOR_CHANNEL, 3);
-		else
-			XGpio_DiscreteWrite(&gpio1, PMOD_MOTOR_CHANNEL, 1);
+	// step motor
+	for (int i = 0; i < 100; i++){
+		XGpio_DiscreteWrite(&gpio1, PMOD_MOTOR_CHANNEL, 3);
+		for (int i = 0; i < 2 * SPEED; i++);
+		XGpio_DiscreteWrite(&gpio1, PMOD_MOTOR_CHANNEL, 1);
+		for (int i = 0; i < 2 * SPEED; i++);
 	}
-	XGpio_DiscreteWrite(&gpio1, PMOD_MOTOR_CHANNEL, 0);
 }
 
 int gpio_init(){
