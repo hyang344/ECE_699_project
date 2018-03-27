@@ -1,0 +1,13 @@
+#-----------------------------------------------------------
+# Vivado v2017.4 (64-bit)
+# SW Build 2086221 on Fri Dec 15 20:55:39 MST 2017
+# IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
+# Start of session at: Tue Mar 27 11:40:30 2018
+# Process ID: 9444
+# Current directory: D:/ALL_PROJECTS/motor_control
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent9224 D:\ALL_PROJECTS\motor_control\motor_control.xpr
+# Log file: D:/ALL_PROJECTS/motor_control/vivado.log
+# Journal file: D:/ALL_PROJECTS/motor_control\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project D:/ALL_PROJECTS/motor_control/motor_control.xpr

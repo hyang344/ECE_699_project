@@ -57,9 +57,10 @@
 #define PMOD_MOTOR_ID	XPAR_AXI_GPIO_1_DEVICE_ID	/* The PmodMotor Device */
 #define PUSH_BUTTON_CHANNEL	1
 #define PMOD_MOTOR_CHANNEL	1
-#define SPEED	100000 * 5
+#define SPEED	5000000
 #define BTND	2
 #define BTNU	16
+#define BTNC	1
 
 XGpio gpio0; // push button
 XGpio gpio1; // pmod motor
@@ -67,34 +68,31 @@ XGpio gpio1; // pmod motor
 void rotate_cw(){
 	print("Rotate cw\n\r");
 	// step motor
+
 	for (int i = 0; i < 1; i++){
-		XGpio_DiscreteWrite(&gpio1, PMOD_MOTOR_CHANNEL, 12);
+		XGpio_DiscreteWrite(&gpio1, PMOD_MOTOR_CHANNEL, 0);
 		for (int i = 0; i < 2 * SPEED; i++);
-		XGpio_DiscreteWrite(&gpio1, PMOD_MOTOR_CHANNEL, 6);
-		for (int i = 0; i < 2 * SPEED; i++);
-		XGpio_DiscreteWrite(&gpio1, PMOD_MOTOR_CHANNEL, 3);
-		for (int i = 0; i < 2 * SPEED; i++);
-		XGpio_DiscreteWrite(&gpio1, PMOD_MOTOR_CHANNEL, 9);
-		for (int i = 0; i < 2 * SPEED; i++);
-		XGpio_DiscreteWrite(&gpio1, PMOD_MOTOR_CHANNEL, 12);
+		XGpio_DiscreteWrite(&gpio1, PMOD_MOTOR_CHANNEL, 2);
 		for (int i = 0; i < 2 * SPEED; i++);
 	}
+
+	/*
+	for (int i = 0; i < 10000; i++){
+		if (i < 2000)
+			XGpio_DiscreteWrite(&gpio1, PMOD_MOTOR_CHANNEL, 12);
+		else
+			XGpio_DiscreteWrite(&gpio1, PMOD_MOTOR_CHANNEL, 8);
+	}
+	*/
 }
 
 void rotate_ccw(){
 	print("Rotate ccw\n\r");
 	// step motor
 	for (int i = 0; i < 1; i++){
-		XGpio_DiscreteWrite(&gpio1, PMOD_MOTOR_CHANNEL, 12);
-		for (int i = 0; i < 2 * SPEED; i++);
-		XGpio_DiscreteWrite(&gpio1, PMOD_MOTOR_CHANNEL, 9);
+		XGpio_DiscreteWrite(&gpio1, PMOD_MOTOR_CHANNEL, 1);
 		for (int i = 0; i < 2 * SPEED; i++);
 		XGpio_DiscreteWrite(&gpio1, PMOD_MOTOR_CHANNEL, 3);
-		for (int i = 0; i < 2 * SPEED; i++);
-		XGpio_DiscreteWrite(&gpio1, PMOD_MOTOR_CHANNEL, 6);
-		for (int i = 0; i < 2 * SPEED; i++);
-		XGpio_DiscreteWrite(&gpio1, PMOD_MOTOR_CHANNEL, 12);
-		for (int i = 0; i < 2 * SPEED; i++);
 	}
 }
 
@@ -137,6 +135,9 @@ int main()
     		rotate_cw();
     	} else if (button == BTNU){
     		rotate_ccw();
+    	} else if (button == BTNC){
+    		// stop the motor
+    		XGpio_DiscreteWrite(&gpio1, PMOD_MOTOR_CHANNEL, 0);
     	}
     }
 
