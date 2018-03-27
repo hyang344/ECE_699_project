@@ -3,6 +3,7 @@ A project that lets you control the motor on the Zedboard with your computer and
 
 
 Current Projects:
+
 1. Hello world project
     After running the project, at the PuTTy window you can see the hello world statement printed out. Does not need any GPIO pin connections. Use the hardware as provided.
     
@@ -14,6 +15,7 @@ Current Projects:
     
     
 Future Projects:
+
 4. Motor Control Part 2 project
     Read the driven motors output as input and analyze its speed and rpm. Use difference PWMs to drive the enable pin to generate different drive voltage and see how the rpm changes accordingly.
 
